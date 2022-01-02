@@ -1,0 +1,16 @@
+{% extends 'store/main.html' %}
+{% load static %}
+{% block content %}
+<link rel="stylesheet" href="{% static 'css/login.css' %}">
+    <div class="login">
+        <div class="login-triangle"></div>
+        <h2 class="login-header">SIGN UP</h2>
+        <form class="login-container" method="POST">
+            {% csrf_token %}
+            {{form}}
+            <input type="hidden" name='next' value="/"/>
+            <p><button type="submit" value="/" class="btn" style="width: 100%; background-color:#4f868c; color: #fff">Sign Up</button></p>
+            <p><a href="{% url 'login' %}">Already have an account?</a></p>
+        </form>
+    </div
+{% endblock content %}

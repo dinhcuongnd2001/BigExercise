@@ -1,0 +1,97 @@
+{% extends 'store/main.html' %}
+{% load static %}
+{% block content %}
+<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<link rel="stylesheet" href="/static/css/profile.css">
+<link rel="stylesheet" href="/static/css/main.css">
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<!------ Include the above in your HEAD tag ---------->
+<style>
+    /* .phone-field{
+        float: right;
+        margin-bottom: 100px;
+    } */
+    .upload {
+    width: 157px;
+    height: 57px;
+    background: url(https://lh6.googleusercontent.com/-dqTIJRTqEAQ/UJaofTQm3hI/AAAAAAAABHo/w7ruR1SOIsA/s157/upload.png);
+    overflow: hidden;
+}
+
+.upload input {
+    display: block !important;
+    width: 157px !important;
+    height: 57px !important;
+    opacity: 0 !important;
+    overflow: hidden !important;
+}
+</style>
+
+<div class="emp-profile">
+            <!-- <form method="POST" enctype="multipart/form-data">  -->
+                <div class="row">
+                    <div class="col-md-4">
+                        <div class="profile-img">
+                            {% for i in info %}
+                            <img src="{{request.user.customer.image.url}}" alt=""/>
+                            <!-- <img src="{{i.customer.imageURL}}" alt=""/> -->
+                            <!-- <div class="file btn btn-lg btn-primary">
+                                Change Photo
+                                <input type="file" name="file"/>
+                            </div> -->
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="profile-head">
+                                    <h5>{{i.customer.full_name}}</h5>
+                                    <h6>
+                                        Customer
+                                    </h6>
+                                    <p class="proile-rating">RANKINGS : <span>8/10</span></p>
+                                    {% endfor %}
+                            <ul class="nav nav-tabs" id="myTab" role="tablist">
+                                <li class="nav-item">
+                                    <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">About</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col-md-2">
+                        <!-- <input type="submit" class="profile-edit-btn" name="btnAddMore" value="Edit Profile"/> -->
+                        <a href="{% url 'profile' %}" class="profile-edit-btn" name="btnAddMore">Cancel</a>
+                        
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-4">
+                        <div class="profile-work">
+                            <p>WORK LINK</p>
+                            <a href="">Website Link</a><br/>
+                            <a href="">Bootsnipp Profile</a><br/>
+                            <a href="">Bootply Profile</a>
+                            <p>SKILLS</p>
+                            <a href="">Spend money</a><br/>
+                            <a href="">Eat</a><br/>
+                            <a href="">Sleep</a><br/>
+                            <a href="">..........</a><br/>
+                            <a href="">..........</a><br/>
+                        </div>
+                    </div>
+                    <div class="col-md-8">
+                        <div class="tab-content profile-tab" id="myTabContent">
+                            <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
+                                <form method="POST" enctype="multipart/form-data"> 
+                                    {% csrf_token %}
+                                    {{user_form}}
+                                    {{profile_form}}
+                                    <br><br>
+                                    <input type="submit" name="submit_new_info" value="Save" class="profile-edit-btn">
+                                </form>   
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            <!-- </form>            -->
+        </div>
+{% endblock content %}

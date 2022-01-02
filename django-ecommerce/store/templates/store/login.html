@@ -1,0 +1,24 @@
+{% extends 'store/main.html' %}
+{% load static %}
+{% block content %}
+<link rel="stylesheet" href="{% static 'css/login.css' %}">
+    <div class="login">
+        {% if messages %}
+        <ul class="messages" style="list-style: none; margin: 0px 0px 0px 0px;padding: 0px 0px 0px 0px;">
+            {% for message in messages %}
+            <li{% if message.tags %} class="success {{ message.tags }}"{% endif %}>{{ message }}</li>
+            {% endfor %}
+        </ul>  
+        {% endif %}
+        <div class="login-triangle"></div>
+        <h2 class="login-header">Log in</h2>
+        <form class="login-container" method="POST">
+            {% csrf_token %}
+            <p><label>Username</label>{{form.username}}</p>
+            <p><label>Password</label>{{form.password}}</p>
+            <input type="hidden" name='next' value="/"/>
+            <p><button type="submit" value="/" class="btn" style="width: 100%; background-color:#4f868c; color: #fff">Log In</button></p>
+            <p><a href="{% url 'register' %}">Register?</a></p>
+        </form>
+    </div>
+{% endblock content %}
